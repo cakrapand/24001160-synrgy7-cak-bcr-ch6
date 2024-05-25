@@ -1,6 +1,7 @@
 import { Router } from "express";
+import { create } from "../controllers/users.controller";
+import { authorize } from "../middleware/authorize";
 
 export const usersRouter = Router();
 
-//superadmin
-usersRouter.get("/users/create");
+usersRouter.post("/users", authorize, create);
