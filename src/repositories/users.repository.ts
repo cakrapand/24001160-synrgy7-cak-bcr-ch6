@@ -10,7 +10,7 @@ export const getUserById = async (id: number) => {
 };
 
 export const getUserByEmail = async (email: string) => {
-  return await UsersModel.query().findOne("email", email).throwIfNotFound();
+  return await UsersModel.query().findOne("email", email);
 };
 
 export const getAllUsers = async () => {

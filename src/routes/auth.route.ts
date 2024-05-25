@@ -1,13 +1,9 @@
 import { Router } from "express";
-import { login } from "../controllers/auth.controller";
+import { login, register, whoami } from "../controllers/auth.controller";
+import { authorize } from "../middleware/authorize";
 
 export const authRouter = Router();
 
-//only superadmin/admin
 authRouter.post("/auth/login", login);
-
-//public
-authRouter.post("/auth/register");
-
-//logged in
-authRouter.post("/auth/whoami");
+authRouter.post("/auth/register", register);
+authRouter.get("/auth/whoami", authorize, whoami);
