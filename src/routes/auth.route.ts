@@ -6,4 +6,4 @@ export const authRouter = Router();
 
 authRouter.post("/auth/login", login);
 authRouter.post("/auth/register", register);
-authRouter.get("/auth/whoami", (req, res, next) => authorize(req, res, next), whoami);
+authRouter.get("/auth/whoami", authorize, whoami);

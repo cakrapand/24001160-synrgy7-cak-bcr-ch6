@@ -3,6 +3,7 @@ import {
   deleteCarById,
   getAllCars,
   getCarById,
+  getCarsAvailable,
   insertCar,
   updateCarById,
 } from "../repositories/cars.repository";
@@ -17,6 +18,10 @@ export const getCars = async () => {
 
 export const getCar = async (id: number) => {
   return await getCarById(id);
+};
+
+export const getAvailable = async () => {
+  return await getCarsAvailable();
 };
 
 export const updateCar = async (id: number, car: ICar) => {

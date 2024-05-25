@@ -1,13 +1,20 @@
 import { Request, Response, Router } from "express";
-import { createCar, deleteCar, getCar, getCars, updateCar } from "../services/cars.service";
+import {
+  createCar,
+  deleteCar,
+  getAvailable,
+  getCar,
+  getCars,
+  updateCar,
+} from "../services/cars.service";
 
 export const create = async (req: Request, res: Response) => {
   try {
-    const { name, price, startRent, finishRent, photoUrl } = req.body;
-    if (!name || !price || !startRent || !finishRent || !photoUrl)
+    const { name, price, isAvailable, startRent, finishRent, photoUrl } = req.body;
+    if (!name || !price || !isAvailable || !startRent || !finishRent || !photoUrl)
       return res.status(400).json({ message: "Invalid Input" });
 
-    await createCar({ name, price, startRent, finishRent, photoUrl });
+    await createCar({ name, price, isAvailable, startRent, finishRent, photoUrl });
 
     return res.status(201).json({ message: "New car created" });
   } catch (error: any) {
@@ -34,16 +41,25 @@ export const get = async (req: Request, res: Response) => {
   }
 };
 
+export const available = async (req: Request, res: Response) => {
+  try {
+    const cars = await getAvailable();
+    return res.status(200).json({ message: "OK", data: cars });
+  } catch (error: any) {
+    return res.status(error.statusCode ? error.statusCode : 500).json({ message: error.message });
+  }
+};
+
 export const update = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { name, price, startRent, finishRent, photoUrl } = req.body;
+    const { name, price, isAvailable, startRent, finishRent, photoUrl } = req.body;
 
-    if (!name && !price && !startRent && !finishRent)
+    if (!name && !price && !isAvailable && !startRent && !finishRent)
       return res.status(400).json({ message: "Invalid Input" });
 
     await getCar(+id);
-    await updateCar(+id, { name, price, startRent, finishRent, photoUrl });
+    await updateCar(+id, { name, price, isAvailable, startRent, finishRent, photoUrl });
 
     return res.status(200).json({ message: "Car updated" });
   } catch (error: any) {

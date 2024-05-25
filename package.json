@@ -8,7 +8,9 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tslint -c tslint.json -p"
+    "lint": "tslint -c tslint.json -p",
+    "migrate": "npx knex migrate:latest --knexfile src/db/knekfile.ts",
+    "seed": "npx knex seed:run --knexfile src/db/knekfile.ts"
   },
   "keywords": [],
   "author": "",

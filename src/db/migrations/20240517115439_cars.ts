@@ -6,6 +6,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string("name").notNullable;
     table.integer("price").notNullable;
     table.string("photoUrl").notNullable;
+    table.boolean("isAvailable").defaultTo(true).notNullable;
     table.datetime("startRent").notNullable;
     table.datetime("finishRent").notNullable;
     table.timestamps({ defaultToNow: true, useCamelCase: true });

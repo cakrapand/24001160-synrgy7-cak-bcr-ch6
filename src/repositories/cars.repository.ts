@@ -9,6 +9,10 @@ export const getCarById = async (id: number) => {
   return await CarsModel.query().findById(id).throwIfNotFound();
 };
 
+export const getCarsAvailable = async () => {
+  return await CarsModel.query().where("isAvailable", true).throwIfNotFound();
+};
+
 export const getAllCars = async () => {
   return await CarsModel.query();
 };

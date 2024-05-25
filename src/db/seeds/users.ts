@@ -27,11 +27,5 @@ export async function seed(knex: Knex): Promise<void> {
       name: "Cakra",
       role: UserRole.Member,
     },
-    {
-      email: "audi@gmail.com",
-      password: password,
-      name: "Audi",
-      role: UserRole.Member,
-    },
   ]);
 }

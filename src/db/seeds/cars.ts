@@ -24,6 +24,7 @@ export async function seed(knex: Knex): Promise<void> {
       name: "Supra",
       price: 3000,
       photoUrl: "Photo URL",
+      isAvailable: false,
       startRent: new Date(),
       finishRent: new Date(),
     },
