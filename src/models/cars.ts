@@ -8,6 +8,10 @@ export class CarsModel extends Model {
   isAvailable!: boolean;
   startRent!: string;
   finishRent!: string;
+  isDeleted!: boolean;
+  createdBy!: number;
+  updatedBy!: number;
+  deletedBy!: number;
   createdAt!: string;
   updatedAt!: string;
 

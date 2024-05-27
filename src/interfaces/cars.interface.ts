@@ -3,6 +3,10 @@ export interface ICar {
   price: string;
   photoUrl?: string;
   isAvailable: boolean;
+  isDeleted?: boolean;
   startRent: string;
   finishRent: string;
+  createdBy?: number;
+  updatedBy?: number;
+  deletedBy?: number;
 }

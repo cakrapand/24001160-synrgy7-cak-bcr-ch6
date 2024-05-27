@@ -28,6 +28,6 @@ export const updateCar = async (id: number, car: ICar) => {
   return await updateCarById(id, car);
 };
 
-export const deleteCar = async (id: number) => {
-  return await deleteCarById(id);
+export const deleteCar = async (carId: number, userId: number) => {
+  return await deleteCarById(carId, userId);
 };

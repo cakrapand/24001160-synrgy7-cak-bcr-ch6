@@ -14,7 +14,16 @@ export const create = async (req: Request, res: Response) => {
     if (!name || !price || !isAvailable || !startRent || !finishRent || !photoUrl)
       return res.status(400).json({ message: "Invalid Input" });
 
-    await createCar({ name, price, isAvailable, startRent, finishRent, photoUrl });
+    await createCar({
+      name,
+      price,
+      isAvailable,
+      startRent,
+      finishRent,
+      photoUrl,
+      createdBy: req.user!.id,
+      updatedBy: req.user!.id,
+    });
 
     return res.status(201).json({ message: "New car created" });
   } catch (error: any) {
@@ -59,7 +68,15 @@ export const update = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Invalid Input" });
 
     await getCar(+id);
-    await updateCar(+id, { name, price, isAvailable, startRent, finishRent, photoUrl });
+    await updateCar(+id, {
+      name,
+      price,
+      isAvailable,
+      startRent,
+      finishRent,
+      photoUrl,
+      updatedBy: req.user!.id,
+    });
 
     return res.status(200).json({ message: "Car updated" });
   } catch (error: any) {
@@ -72,7 +89,7 @@ export const destroy = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     await getCar(+id);
-    await deleteCar(+id);
+    await deleteCar(+id, req.user!.id);
 
     return res.status(200).json({ message: "Car Deleted" });
   } catch (error: any) {
